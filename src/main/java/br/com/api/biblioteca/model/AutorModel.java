@@ -3,6 +3,8 @@ package br.com.api.biblioteca.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +28,7 @@ public class AutorModel {
     private String nationality;
 
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("autor")
     private List<LivroModel> livros = new ArrayList<>();
 
     @Version

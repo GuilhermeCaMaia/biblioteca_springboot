@@ -1,5 +1,7 @@
 package br.com.api.biblioteca.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +28,7 @@ public class LivroModel {
 
     @ManyToOne
     @JoinColumn(name = "autor_id", nullable = false)
+    @JsonIgnoreProperties("livros")
     private AutorModel autor;
 
     @Version

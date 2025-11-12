@@ -27,15 +27,15 @@ public class LivroService {
         return livroRepository.findAll();
     }
 
+    // Metodo para cadastrar um novo livro
     public ResponseEntity<?> create(LivroModel livro) {
         ResponseModel response = validarLivro(livro);
         if (response != null) {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-        
         if (livro.getAutor() != null && livro.getAutor().getId() != null) {
-            AutorModel autor = autorRepository.findById(livro.getAutor().getId())
-                    .orElse(null);
+            AutorModel autor = autorRepository.findById(
+                livro.getAutor().getId()).orElse(null);
             if (autor == null) {
                 ResponseModel erro = new ResponseModel();
                 erro.setMensagem("Autor não encontrado.");
@@ -43,7 +43,6 @@ public class LivroService {
             }
             livro.setAutor(autor);
         }
-
         LivroModel novoLivro = livroRepository.save(livro);
         return new ResponseEntity<>(novoLivro, HttpStatus.CREATED);
     }
@@ -55,13 +54,15 @@ public class LivroService {
             erro.setMensagem("Livro Não encontrado");
             return new ResponseEntity<>(erro, HttpStatus.NOT_FOUND);
         }
+
         ResponseModel response = validarLivro(livro);
         if (response != null) {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
+        
         if (livro.getAutor() != null && livro.getAutor().getId() != null) {
-            AutorModel autor = autorRepository.findById(livro.getAutor().getId())
-                    .orElse(null);
+            AutorModel autor = autorRepository.findById(
+                livro.getAutor().getId()).orElse(null);
             if (autor == null) {
                 ResponseModel erro = new ResponseModel();
                 erro.setMensagem("Autor não encontrado.");

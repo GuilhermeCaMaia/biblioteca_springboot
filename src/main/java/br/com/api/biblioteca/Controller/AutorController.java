@@ -42,11 +42,4 @@ public class AutorController {
     public Iterable<AutorModel> listar() {
         return autorService.listar();
     }
-    
-
-    // @GetMapping("/autor/")
-    // public String rota() {
-    //     return "Hello World";
-    // }
-
 }
