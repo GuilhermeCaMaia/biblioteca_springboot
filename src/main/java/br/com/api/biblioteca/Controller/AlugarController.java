@@ -11,32 +11,34 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.api.biblioteca.model.LivroModel;
+import br.com.api.biblioteca.model.AlugarModel;
+import br.com.api.biblioteca.service.AlugarService;
 import br.com.api.biblioteca.service.LivroService;
+import br.com.api.biblioteca.service.UserService;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class LivroController {
+public class AlugarController {
     @Autowired
-    private LivroService livroService;
+    private AlugarService alugarService;
 
-    @PostMapping("/livro/create")
-    public ResponseEntity<?> create(@RequestBody LivroModel livro) {
-        return livroService.create(livro);
+    @PostMapping("/alugar/create")
+    public ResponseEntity<?> create(@RequestBody AlugarModel alugar) {
+        return alugarService.create(alugar);
     }
 
-    @PutMapping("/livro/update/{id}")
-    public ResponseEntity<?> update(@RequestBody LivroModel livro) {
-        return livroService.update(livro.getId(), livro);
+    @PutMapping("/alugar/update/{id}")
+    public ResponseEntity<?> update(@RequestBody AlugarModel alugar) {
+        return alugarService.update(alugar.getId(), alugar);
     }
 
-    @DeleteMapping("/livro/delete/{id}")
+    @DeleteMapping("/alugar/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable long id) {
-        return livroService.delete(id);
+        return alugarService.delete(id);
     }
 
-    @GetMapping("/livro/list")
-    public Iterable<LivroModel> listar() {
-        return livroService.listar();
+    @GetMapping("/alugar/list")
+    public Iterable<AlugarModel> listar() {
+        return alugarService.listar();
     }
 }

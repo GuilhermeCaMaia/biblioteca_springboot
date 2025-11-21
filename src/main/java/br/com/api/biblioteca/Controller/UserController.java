@@ -11,32 +11,32 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.api.biblioteca.model.LivroModel;
-import br.com.api.biblioteca.service.LivroService;
+import br.com.api.biblioteca.model.UserModel;
+import br.com.api.biblioteca.service.UserService;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class LivroController {
+public class UserController {
     @Autowired
-    private LivroService livroService;
+    private UserService userService;
 
-    @PostMapping("/livro/create")
-    public ResponseEntity<?> create(@RequestBody LivroModel livro) {
-        return livroService.create(livro);
+    @PostMapping("/user/create")
+    public ResponseEntity<?> create(@RequestBody UserModel user) {
+        return userService.create(user);
     }
 
-    @PutMapping("/livro/update/{id}")
-    public ResponseEntity<?> update(@RequestBody LivroModel livro) {
-        return livroService.update(livro.getId(), livro);
+    @PutMapping("/user/update/{id}")
+    public ResponseEntity<?> update(@RequestBody UserModel user) {
+        return userService.update(user.getId(), user);
     }
 
-    @DeleteMapping("/livro/delete/{id}")
+    @DeleteMapping("/user/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable long id) {
-        return livroService.delete(id);
+        return userService.delete(id);
     }
 
-    @GetMapping("/livro/list")
-    public Iterable<LivroModel> listar() {
-        return livroService.listar();
+    @GetMapping("/user/list")
+    public Iterable<UserModel> listar() {
+        return userService.listar();
     }
 }

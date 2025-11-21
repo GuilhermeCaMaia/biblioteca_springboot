@@ -10,8 +10,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
@@ -19,27 +17,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "TB_LIVRO")
+@Table(name = "TB_USER")
 @Getter
 @Setter
-public class LivroModel {
+public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String synopsis;
-    private String genre;
-    private Integer year;
+    private String email;
+    private String password;
+    private String type;
 
-    @ManyToOne
-    @JoinColumn(name = "autor_id", nullable = false)
-    @JsonIgnoreProperties("livros")
-    private AutorModel autor;
-
-    @OneToMany(mappedBy = "livro", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("livro")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
     private List<AlugarModel> alugueis = new ArrayList<>();
 
     @Version
     private Long version; // campo de controle de versão
+
 }

@@ -79,7 +79,7 @@ public class LivroService {
     public ResponseEntity<?> delete(long id) {
         if (!livroRepository.existsById(id)) {
             ResponseModel erro = new ResponseModel();
-            erro.setMensagem("Livro Não encontrado");
+            erro.setMensagem("Livro não encontrado!");
             return new ResponseEntity<>(erro, HttpStatus.NOT_FOUND);
         }
 
