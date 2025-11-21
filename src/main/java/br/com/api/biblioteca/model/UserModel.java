@@ -7,10 +7,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import lombok.Getter;
@@ -26,7 +29,16 @@ public class UserModel {
     private Long id;
     private String email;
     private String password;
-    private String type;
+    
+    @Enumerated(EnumType.STRING)
+    private UserType type;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.type == null) {
+            this.type = UserType.CLIENTE; // Define CLIENTE como tipo padrão
+        }
+    }
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")

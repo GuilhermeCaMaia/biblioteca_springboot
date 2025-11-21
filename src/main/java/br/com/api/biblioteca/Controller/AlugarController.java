@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.api.biblioteca.model.AlugarModel;
 import br.com.api.biblioteca.service.AlugarService;
-import br.com.api.biblioteca.service.LivroService;
-import br.com.api.biblioteca.service.UserService;
 
 @RestController
 @CrossOrigin(origins = "*")
